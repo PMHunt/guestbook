@@ -32,7 +32,6 @@ body {
   /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
 }
-
 ul.messages {
   list-style: none;
 }

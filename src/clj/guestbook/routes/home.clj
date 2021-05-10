@@ -14,15 +14,13 @@
   (layout/render request "about.html"))
 
 (defn save-message! [{:keys [params]}]
-  ;; destructure request by key into params and save to db
   (db/save-message! params)
-  ;; redirect back to homepage
-  (response/found "/"))
+-  (response/found "/"))
 
 (defn home-routes []
   [""
    {:middleware [middleware/wrap-csrf
                  middleware/wrap-formats]}
    ["/" {:get home-page}]
-   ["/about" {:get about-page}]
-   ["/message" {:post save-message!}]])
+   ["/message" {:post save-message!}]
+   ["/about" {:get about-page}]])

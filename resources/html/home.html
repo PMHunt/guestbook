@@ -20,7 +20,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="columns"> <div class="column">
+            <div class="columns">
+                <div class="column">
                 <form method="POST" action="/message">
                     {% csrf-field %}
                     <div class="field">
@@ -39,6 +40,8 @@
                         </textarea>
                     </div>
                     <input type="submit"
+                           class="button is-primary"
+                           value="comment" />
                 </form>
             </div>
             </div>
