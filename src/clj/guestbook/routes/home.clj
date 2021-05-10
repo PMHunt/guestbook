@@ -8,15 +8,21 @@
    [ring.util.http-response :as response]))
 
 (defn home-page [request]
-  (layout/render request "home.html" {:docs (-> "docs/docs.md" io/resource slurp)}))
+  (layout/render request "home.html" {:messages (db/get-messages)}))
 
 (defn about-page [request]
   (layout/render request "about.html"))
+
+(defn save-message! [{:keys [params]}]
+  ;; destructure request by key into params and save to db
+  (db/save-message! params)
+  ;; redirect back to homepage
+  (response/found "/"))
 
 (defn home-routes []
   [""
    {:middleware [middleware/wrap-csrf
                  middleware/wrap-formats]}
    ["/" {:get home-page}]
-   ["/about" {:get about-page}]])
-
+   ["/about" {:get about-page}]
+   ["/message" {:post save-message!}]])
