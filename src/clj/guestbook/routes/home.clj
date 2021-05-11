@@ -10,7 +10,9 @@
 (defn home-page [request]
   (layout/render request "home.html" {:messages (db/get-messages)}))
 
-(defn about-page [request]
+(defn about-page
+  "Slurps markdown for Selmer filter defined in layout.clj and used in *.html"
+  [request]
   (layout/render request "about.html" {:docs (-> "docs/docs.md"
                                                  io/resource
                                                  slurp)}))
