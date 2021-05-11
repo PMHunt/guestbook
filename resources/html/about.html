@@ -1,4 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-  <img src="/img/warning_clojure.png"></img>
+<img src="/img/warning_clojure.png"></img>
+<div class="content">
+    {{docs|markdown}}
+</div>
 {% endblock %}

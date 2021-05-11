@@ -11,7 +11,9 @@
   (layout/render request "home.html" {:messages (db/get-messages)}))
 
 (defn about-page [request]
-  (layout/render request "about.html"))
+  (layout/render request "about.html" {:docs (-> "docs/docs.md"
+                                                 io/resource
+                                                 slurp)}))
 
 (defn save-message! [{:keys [params]}]
   (db/save-message! params)
